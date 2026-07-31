@@ -21,7 +21,7 @@ const MessageList = () => {
         <div>
             {message.map((msg,i)=>(
                 <div>
-                    <MessageBubble role={msg?.role} content={msg?.content}/>
+                    <MessageBubble role={msg?.role} content={msg?.content} images={msg.images || []}/>
                 </div>
             ))}
         </div>

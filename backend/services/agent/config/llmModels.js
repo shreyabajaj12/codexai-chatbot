@@ -3,12 +3,12 @@ import { ChatGoogle } from "@langchain/google";
 import dotenv from "dotenv"
 
 dotenv.config()
+console.log("api key", process.env.GROQ_API_KEY)
 const groq = new ChatGroq({
     
     apiKey: process.env.GROQ_API_KEY,
     model: "openai/gpt-oss-120b",
 })
-
 const gemini = new ChatGoogle("gemini-2.5-flash");
 
 export const getModel=async(agent)=>{

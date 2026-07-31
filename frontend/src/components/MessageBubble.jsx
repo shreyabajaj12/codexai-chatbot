@@ -1,7 +1,7 @@
 import React from 'react'
 import Markdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
-const MessageBubble = ({role,content}) => {
+const MessageBubble = ({role,content,images}) => {
   const isUser=role=="user"
   return (
     <div className={`flex ${isUser? "justify-end":"justify-start"}`}>
@@ -13,7 +13,23 @@ const MessageBubble = ({role,content}) => {
           "bg-white/[0.04] border border-white/[0.07] text-slate-200 rounded-tl-sm"
         }
         `}
-      ><Markdown>
+      >
+        {images.length >0 &&(
+          <div className='flex flex-wrap gap-3 mt-4'>
+            {images.map((img,i)=>(
+              <img 
+              key={i}
+              loading="lazy"
+              onError={(e)=>e.currentTarget.remove()}
+              src={img} 
+              className='w-40 h-28 rounded-xl object-cover border border-white/10 cursor-zoom-in hover:opacity-90 transition'
+              alt="" />
+            ))}
+          </div>
+        )}
+        
+        
+        <Markdown>
         {content}
         </Markdown>
         </div>

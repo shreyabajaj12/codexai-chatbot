@@ -39,7 +39,7 @@ const Sidebar = () => {
                 <button className='flex items-center justify-center w-9 h-9 rounded-xl text-slate-500
                 hover:text-slate-200 hover:bg-white/[0.05] transition-colors duration-150 bg-transparent
                 border-none cursor-pointer mb-1
-                ' onClick={handleCreateConversation}>
+                ' onClick={()=>dispatch(setSelectedConversation(null))}>
                     <Plus />
                 </button>
 
@@ -96,12 +96,12 @@ const Sidebar = () => {
                     <button className='hidden lg:flex items-center justify-center w-7 h-7 rounded-lg text-slate-500 
                 hover:text-slate-200 hover:bg-white/[0.05] transition-colors duration-150 bg-transparent
                 border-none cursor-pointer'>
-                        <PenSquare size={20} onClick={handleCreateConversation} />
+                        <PenSquare size={20}  onClick={()=>dispatch(setSelectedConversation(null))} />
                     </button>
                 </div>
 
                 <div className='px-4 pt-4 pb-1'>
-                    <button className='w-full flex items-center justify-center gap-2 text-sm font-medium text-white bg-linear-to-br from bg-indigo-500 to-violet-400 rounded-xl py-[10px] border-none cursor-pointer hover:opacity-90 transition-opacity duration-150' onClick={handleCreateConversation}>
+                    <button className='w-full flex items-center justify-center gap-2 text-sm font-medium text-white bg-linear-to-br from bg-indigo-500 to-violet-400 rounded-xl py-[10px] border-none cursor-pointer hover:opacity-90 transition-opacity duration-150'  onClick={()=>dispatch(setSelectedConversation(null))}>
                         <Plus size={18} />
                         New Chat
                     </button>
