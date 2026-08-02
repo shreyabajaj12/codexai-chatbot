@@ -3,7 +3,7 @@ import React from 'react'
 import { useState } from 'react'
 import sendMessage from '../features/sendMessage'
 import { useDispatch, useSelector } from 'react-redux'
-import { addMessage, setMessage } from '../redux/messageSlice'
+import { addMessage, setArtifacts, setMessage } from '../redux/messageSlice'
 import { createConversation } from '../features/createConversation'
 import { addConversation, setConvTitle, setSelectedConversation } from '../redux/conversationSlice'
 import { updateConversation } from '../features/updateconversation'
@@ -20,6 +20,7 @@ const ChatInput = () => {
             const conv = await createConversation()
             dispatch(setSelectedConversation(conv))
             dispatch(addConversation(conv))
+            dispatch(setMessage([]));
             conversation=conv
         }
         if(conversation.title=="New Chat"){
@@ -39,10 +40,13 @@ const ChatInput = () => {
         //         },
         //     ])
         // );
-
+ 
         dispatch(addMessage({role:"user",content:value.trim()}))
         setValue("")
         const data =await sendMessage(payload)
+        console.log(data)
+        dispatch(setArtifacts(data.artifacts || []))
+        console.log("Dispatching:", data.artifacts);
         dispatch(addMessage({role:"assistant",content:data?.answer,images:data?.images}))
         console.log(data)
     }
